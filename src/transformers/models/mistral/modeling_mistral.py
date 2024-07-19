@@ -421,7 +421,7 @@ class MistralFlashAttention2(MistralAttention):
             use_sliding_windows=use_sliding_windows,
         )
 
-        attn_output = attn_output.reshape(bsz, q_len, self.hidden_size).contiguous()
+        attn_output = attn_output.reshape(bsz, q_len, self.num_heads * self.head_dim).contiguous()
         attn_output = self.o_proj(attn_output)
 
         if not output_attentions:
